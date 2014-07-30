@@ -9,7 +9,7 @@ File getEnvironmentScript()
 
 apply from: environmentScript
 
-project.version = "2.0.0"
+project.version = "2.0.0.fk.001"
 
 
 
@@ -169,4 +169,15 @@ task makedir(type:Exec) {
 	commandLine = ['mkdir','-p', dir]
 	workingDir = file(rootDir.toString())
   }
+}
+
+apply plugin: 'maven'
+task createPom << {
+   pom {
+       project {
+           groupId 'com.linkedin.databus'
+           version '2.0.0.fk.001'
+           print "Hello"
+       }
+   }.writeTo("$buildDir/libs/pom.xml")
 }
